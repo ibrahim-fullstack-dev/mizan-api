@@ -1,8 +1,8 @@
-// src/Mizan.Infrastructure/DependencyInjection.cs
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Mizan.Infrastructure.Persistence;
+using Mizan.Application.Common.Interfaces;
+using Mizan.Infrastructure.Platform.Persistence;
 
 namespace Mizan.Infrastructure;
 
@@ -15,8 +15,17 @@ public static class DependencyInjection
         var connectionString =
             configuration.GetConnectionString("DefaultConnection");
 
-        services.AddDbContext<MizanDbContext>(options =>
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException(
+                "Database connection string 'DefaultConnection' is not configured.");
+        }
+
+        services.AddDbContext<MizanPlatformDbContext>(options =>
             options.UseNpgsql(connectionString));
+
+        services.AddScoped<IPlatformDbContext>(
+            serviceProvider => serviceProvider.GetRequiredService<MizanPlatformDbContext>());
 
         return services;
     }
