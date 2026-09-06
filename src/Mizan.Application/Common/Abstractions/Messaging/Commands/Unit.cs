@@ -1,4 +1,5 @@
-namespace Mizan.Application.Common.Abstractions.Messaging.Commands;
+namespace Mizan.Application.Common.Abstractions.Messaging.Commands
+;
 
 public readonly record struct Unit
 {

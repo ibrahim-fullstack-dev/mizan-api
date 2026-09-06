@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Common.Services;
 
