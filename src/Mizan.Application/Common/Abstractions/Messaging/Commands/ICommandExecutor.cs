@@ -1,5 +1,5 @@
 // src/Mizan.Application/Common/Abstractions/Messaging/ICommandExecutor.cs
-namespace Mizan.Application.Common.Abstractions.Messaging;
+namespace Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 /// <summary>
 /// Defines a command executor.
