@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+
 using Mizan.Domain.Platform.Plans;
 using Mizan.Domain.Platform.Storage;
 using Mizan.Domain.Platform.Subscriptions;
@@ -28,7 +29,7 @@ public interface IPlatformDbContext
     Task RollbackTransactionAsync(
         CancellationToken cancellationToken = default);
 
-    Task ExecuteSqlAsync(
-        string sql,
+    Task CreateTenantSchemaAsync(
+        string schemaName,
         CancellationToken cancellationToken = default);
 }
