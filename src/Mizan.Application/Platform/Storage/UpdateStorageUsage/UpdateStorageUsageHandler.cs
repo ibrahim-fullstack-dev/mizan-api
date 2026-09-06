@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Domain.Shared.ValueObjects;
 
 namespace Mizan.Application.Platform.Storage.UpdateStorageUsage;

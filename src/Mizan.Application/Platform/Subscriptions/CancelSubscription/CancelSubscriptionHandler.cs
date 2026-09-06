@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Subscriptions.CancelSubscription;
 
-public sealed class CancelSubscriptionHandler: ICommandHandler<CancelSubscriptionCommand, Unit>
+public sealed class CancelSubscriptionHandler : ICommandHandler<CancelSubscriptionCommand, Unit>
 {
     private readonly IPlatformDbContext _context;
 

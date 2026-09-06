@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Tenants.ReactivateTenant;
 
-public sealed class ReactivateTenantHandler: ICommandHandler<ReactivateTenantCommand,Unit>
+public sealed class ReactivateTenantHandler : ICommandHandler<ReactivateTenantCommand, Unit>
 {
     private readonly IPlatformDbContext _context;
 

@@ -1,4 +1,4 @@
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 using Mizan.Domain.Platform.Plans;
 
@@ -9,4 +9,4 @@ public sealed record CreateSubscriptionCommand(
     int PlanId,
     BillingCycle BillingCycle,
     DateTime PeriodStart,
-    DateTime PeriodEnd): ICommand<int>;
+    DateTime PeriodEnd) : ICommand<int>;

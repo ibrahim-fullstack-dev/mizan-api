@@ -1,4 +1,4 @@
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Tenants.UpdateTenant;
 
