@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Domain.Platform.Plans;
 
 namespace Mizan.Application.Platform.Subscriptions.RenewSubscription;

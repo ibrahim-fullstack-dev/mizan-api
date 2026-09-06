@@ -1,7 +1,7 @@
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Tenants.CreateTenant;
 
 public sealed record CreateTenantCommand(
     string Name,
-    string SubDomain): ICommand<int>;
+    string SubDomain) : ICommand<int>;

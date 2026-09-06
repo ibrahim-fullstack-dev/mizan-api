@@ -1,4 +1,4 @@
-namespace Mizan.Application.Common.DTOs.Platform;
+namespace Mizan.Application.Platform.Tenants.DTOs;
 
 public sealed record TenantDto(
     int Id,

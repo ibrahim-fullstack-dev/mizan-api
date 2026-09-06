@@ -1,6 +1,6 @@
 using Mizan.Application.Common.Interfaces;
 using Mizan.Domain.Platform.Plans;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Domain.Shared.ValueObjects;
 
 namespace Mizan.Application.Platform.Plans.CreatePlan;

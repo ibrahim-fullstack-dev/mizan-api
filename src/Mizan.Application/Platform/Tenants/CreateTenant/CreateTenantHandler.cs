@@ -1,12 +1,11 @@
-// src/Mizan.Application/Platform/Tenants/CreateTenant/CreateTenantHandler.cs
-
 using Mizan.Application.Common.Interfaces;
 using Mizan.Domain.Platform.Tenants;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Tenants.CreateTenant;
 
-public sealed class CreateTenantHandler: ICommandHandler<CreateTenantCommand,int>
+public sealed class CreateTenantHandler
+    : ICommandHandler<CreateTenantCommand, int>
 {
     private readonly IPlatformDbContext _context;
 
@@ -33,8 +32,8 @@ public sealed class CreateTenantHandler: ICommandHandler<CreateTenantCommand,int
 
             tenant.AssignSchemaName();
 
-            await _context.ExecuteSqlAsync(
-                $"CREATE SCHEMA \"{tenant.SchemaName}\"",
+            await _context.CreateTenantSchemaAsync(
+                tenant.SchemaName!,
                 cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
@@ -45,7 +44,9 @@ public sealed class CreateTenantHandler: ICommandHandler<CreateTenantCommand,int
         }
         catch
         {
-            await _context.RollbackTransactionAsync(CancellationToken.None);
+            await _context.RollbackTransactionAsync(
+                CancellationToken.None);
+
             throw;
         }
     }

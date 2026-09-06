@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 
 namespace Mizan.Application.Platform.Subscriptions.ReactivateSubscription;
 
-public sealed class ReactivateSubscriptionHandler: ICommandHandler<ReactivateSubscriptionCommand, Unit>
+public sealed class ReactivateSubscriptionHandler : ICommandHandler<ReactivateSubscriptionCommand, Unit>
 {
     private readonly IPlatformDbContext _context;
 

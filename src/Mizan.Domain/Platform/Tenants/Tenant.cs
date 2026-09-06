@@ -12,7 +12,7 @@ public sealed class Tenant : AggregateRoot
 
     public string SubDomain { get; private set; } = null!;
 
-    public string? SchemaName { get; private set; }
+    public string SchemaName { get; private set; } = null!;
 
     public TenantStatus Status { get; private set; }
 

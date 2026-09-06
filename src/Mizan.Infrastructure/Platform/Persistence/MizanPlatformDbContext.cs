@@ -1,8 +1,9 @@
-// src/Mizan.Infrastructure/Persistence/Platform/MizanPlatformDbContext.cs
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Text.RegularExpressions;
+
 using Mizan.Application.Common.Interfaces;
+
 using Mizan.Domain.Platform.Plans;
 using Mizan.Domain.Platform.Storage;
 using Mizan.Domain.Platform.Subscriptions;
@@ -36,7 +37,8 @@ public sealed class MizanPlatformDbContext
             throw new InvalidOperationException(
                 "A database transaction is already in progress.");
 
-        _transaction = await Database.BeginTransactionAsync(cancellationToken);
+        _transaction =
+            await Database.BeginTransactionAsync(cancellationToken);
     }
 
     public async Task CommitTransactionAsync(
@@ -48,6 +50,7 @@ public sealed class MizanPlatformDbContext
 
         await _transaction.CommitAsync(cancellationToken);
         await _transaction.DisposeAsync();
+
         _transaction = null;
     }
 
@@ -64,15 +67,27 @@ public sealed class MizanPlatformDbContext
         finally
         {
             await _transaction.DisposeAsync();
+
             _transaction = null;
         }
     }
 
-    public async Task ExecuteSqlAsync(
-        string sql,
+    public async Task CreateTenantSchemaAsync(
+        string schemaName,
         CancellationToken cancellationToken = default)
     {
-        await Database.ExecuteSqlRawAsync(sql, cancellationToken);
+        if (!Regex.IsMatch(schemaName, @"^tenant_\d+$"))
+        {
+            throw new ArgumentException(
+                "Invalid tenant schema name.",
+                nameof(schemaName));
+        }
+
+#pragma warning disable EF1002
+        await Database.ExecuteSqlRawAsync(
+            $"CREATE SCHEMA \"{schemaName}\"",
+            cancellationToken);
+#pragma warning restore EF1002
     }
 
     protected override void OnModelCreating(

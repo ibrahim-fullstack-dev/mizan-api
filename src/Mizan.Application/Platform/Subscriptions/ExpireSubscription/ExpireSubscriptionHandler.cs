@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Mizan.Application.Common.Interfaces;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Subscriptions.ExpireSubscription;
 
-public sealed class ExpireSubscriptionHandler: ICommandHandler<ExpireSubscriptionCommand, Unit>
+public sealed class ExpireSubscriptionHandler : ICommandHandler<ExpireSubscriptionCommand, Unit>
 {
     private readonly IPlatformDbContext _context;
 

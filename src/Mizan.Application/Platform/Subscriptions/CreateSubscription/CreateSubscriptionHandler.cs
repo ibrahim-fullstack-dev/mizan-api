@@ -3,7 +3,7 @@ using Mizan.Application.Common.Interfaces;
 using Mizan.Domain.Platform.Plans;
 using Mizan.Domain.Platform.Subscriptions;
 using Mizan.Domain.Platform.Tenants;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 
 namespace Mizan.Application.Platform.Subscriptions.CreateSubscription;
 
