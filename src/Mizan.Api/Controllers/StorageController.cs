@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Application.Platform.Storage.UpdateStorageUsage;
 
 namespace Mizan.Api.Controllers;

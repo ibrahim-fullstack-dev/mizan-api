@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Application.Platform.Subscriptions.CancelSubscription;
 using Mizan.Application.Platform.Subscriptions.CreateSubscription;
 using Mizan.Application.Platform.Subscriptions.ExpireSubscription;

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Mizan.Application.Common.Abstractions.Messaging;
+using Mizan.Application.Common.Abstractions.Messaging.Commands;
 using Mizan.Application.Platform.Tenants.CreateTenant;
 using Mizan.Application.Platform.Tenants.DeactivateTenant;
 using Mizan.Application.Platform.Tenants.ReactivateTenant;
@@ -14,6 +14,7 @@ public sealed class TenantsController : ControllerBase
 {
     private readonly ICommandExecutor _commandExecutor;
 
+    // Inject the command executor.
     public TenantsController(ICommandExecutor commandExecutor)
     {
         _commandExecutor = commandExecutor;
@@ -40,8 +41,10 @@ public sealed class TenantsController : ControllerBase
         CancellationToken cancellationToken)
     {
         if (id != command.Id)
+        {
             return BadRequest(
                 "Route ID does not match command ID.");
+        }
 
         await _commandExecutor.ExecuteAsync<
             UpdateTenantCommand,
