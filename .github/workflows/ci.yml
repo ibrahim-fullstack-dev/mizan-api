@@ -1,0 +1,28 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name:
+
+on:
+  push:
+    branches: ["develop"]
+  pull_request:
+    branches: ["develop"]
+
+jobs:
+  build:
+    # The workflow will run on Ubuntu Linux machines (Runners) hosted by GitHub Actions.
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4 # Fetches the repository code to the runner.
+      - name: Setup .NET # Prepares the .NET environment on the runner.
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore # Restores the dependencies of the project.
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
